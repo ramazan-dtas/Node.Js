@@ -165,14 +165,15 @@ html(lang='en')
         li
       .form-box
         h1 Log In
-        .text-box
-          input(type='username' placeholder='Username')
-          br
-          br
-          input(type='password' minlength='8' maxlength='20' placeholder='Password')
-          br
-          br
-          input(type='submit' value='Log In')
+        form(action='/login' name='form' method='POST')
+          .text-box
+            input#username(type='text' name='name' placeholder='Username')
+            br
+            br
+            input#password(type='password' name='password' minlength='8' maxlength='20' placeholder='Password')
+            br
+            br
+            button#login login
       .form-box-sign
         h1 Sign Up
         form(action='/submit' name='form' method='POST')
@@ -183,10 +184,10 @@ html(lang='en')
             input#repname(type='text' name='repname' placeholder='Repeat username')
             br
             br
-            input#pass(type='password' name='pass' minlength='8' maxlength='20' placeholder='Password')
+            input#pass(type='password' name='pass' minlength='8' placeholder='Password')
             br
             br
-            input#reppas(type='password' name='reppas' minlength='8' maxlength='20' placeholder='Repeat password')
+            input#reppas(type='password' name='reppas' minlength='8' placeholder='Repeat password')
             br
             br
             button#submit save

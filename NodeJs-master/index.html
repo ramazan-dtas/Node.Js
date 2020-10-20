@@ -185,11 +185,11 @@
         </ul>
         <div class="form-box">
             <h1>Log In</h1>
-            <form action="/login" method="POST">
+            <form action="/login" name="form" method="POST">
                 <div class="text-box">
-                    <input type="username" placeholder="Username"><br><br>
-                    <input type="password" minlength="8" maxlength="20" placeholder="Password"><br><br>
-                    <input type="submit" value="Log In">
+                    <input type="text" name="name" placeholder="Username" id="username"><br><br>
+                    <input type="password" name="password" minlength="8" maxlength="20" placeholder="Password" id="password"><br><br>
+                    <button id="submit">login</button>
                 </div>
             </form>
         </div>

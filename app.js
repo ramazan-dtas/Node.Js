@@ -1,4 +1,5 @@
 const exrpess = require('express');
+//const session = require('express-session');
 const path = require('path');
 const fs = require('fs');
 const bodyparser = require('body-parser');
@@ -30,32 +31,37 @@ app.post('/submit', function(req, res) {
         console.log('Connected');
         console.log('Username: ' + req.body.name);
         console.log('Password: ' + req.body.pass);
-        /* document.getElementById("name").value;
-        document.getElementById("repname").value;
-        document.getElementById("pass").value;
-        document.getElementById("reppas").value; */
+
 
         var sql = `INSERT INTO login VALUES (null, '${req.body.name}','${req.body.repname}','${req.body.pass}','${req.body.reppas}')`;
-        //var sql = "INSERT INTO login VALUES (null, '"+req.body.name+"','"+req.body.repname+"','"+req.body.pass+"','"+req.body.reppass+"')";
         console.log(sql);
         con.query(sql, function (err, result){
             if(err) throw err;
             console.log('1 record inserted');
         });
-        
     });
 });
 
 app.post('/login', function(req, res) {
-    if(req.body.name == "" || req.aborted.pass == "") {
-        var sql = `select * from login where name = ${req.body.name} and pass=${req.body.pass}`;
-        con.query(sql, function(err,result) {
-            res.render('chatroom');
-        });
-    } else {
-        res.render('index');
-    }
     
+    con.connect(function(err){
+        /*var username = req.body.name;
+	    var password = req.body.password;*/
+        if (err) throw err;
+        console.log('Connected');
+        console.log('Username: ' + req.body.name);
+        console.log('Password: ' + req.body.password);
+
+        var sql = `SELECT * FROM login WHERE name = '${req.body.name}' and pass = '${req.body.password}'`;
+        //console.log(sql);
+
+        con.query(sql, function (err, result){
+            if(err) throw err;
+            console.log('Velkommen');
+        });
+    });
 });
+
+app.get('/')
 
 app.listen(port, () => console.log(`Server is running at port: ${port}`));
